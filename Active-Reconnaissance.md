@@ -65,13 +65,10 @@ A successful zone transfer reveals all subdomains, IPs, mail servers, and servic
 
 ```bash
 # Standard brute-force
-dnsenum --enum example.com \
-  -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+dnsenum --enum example.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
 
 # With recursive brute-force
-dnsenum --enum example.com \
-  -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt \
-  -r
+dnsenum --enum example.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -r
 
 # dnsenum also: attempts zone transfers, Google scraping, WHOIS, reverse lookups
 ```
@@ -80,9 +77,7 @@ dnsenum --enum example.com \
 
 ```bash
 # Fast subdomain fuzzing
-ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ \
-  -u https://FUZZ.example.com/ \
-  -mc 200,301,302,403
+ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u https://FUZZ.example.com/ -mc 200,301,302,403
 ```
 
 #### Other Tools
@@ -92,18 +87,14 @@ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ \
 fierce --domain example.com
 
 # dnsrecon — multi-technique
-dnsrecon -d example.com \
-  -D /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt \
-  -t brt
+dnsrecon -d example.com -D /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -t brt
 
 # amass — passive + active, many data sources
 amass enum -d example.com
 amass enum -active -d example.com -o amass-output.txt
 
 # puredns — high-speed resolver-based brute-force
-puredns bruteforce \
-  /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt \
-  example.com
+puredns bruteforce /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt example.com
 
 # assetfinder — quick passive discovery
 assetfinder --subs-only example.com
@@ -138,33 +129,21 @@ assetfinder --subs-only example.com
 sudo sh -c 'echo "TARGET_IP  example.htb" >> /etc/hosts'
 
 # Step 2 — gobuster vhost discovery
-gobuster vhost -u http://example.htb \
-  -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt \
-  --append-domain
+gobuster vhost -u http://example.htb -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
 
 # gobuster with extra options
 # -t 50   → threads
 # -k      → ignore SSL/TLS errors
 # -o      → save output to file
-gobuster vhost -u https://example.htb \
-  -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt \
-  --append-domain \
-  -t 50 \
-  -k \
-  -o vhost-results.txt
+gobuster vhost -u https://example.htb -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain -t 50 -k -o vhost-results.txt
 
 # Step 3 — ffuf alternative (fuzz the Host header directly)
-ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ \
-  -u http://example.htb/ \
-  -H 'Host: FUZZ.example.htb'
+ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://example.htb/ -H 'Host: FUZZ.example.htb'
 
 # Step 4 — filter false positives
 # First run without -fs to find the baseline response size of false positives
 # Then re-run filtering that size out:
-ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ \
-  -u http://example.htb/ \
-  -H 'Host: FUZZ.example.htb' \
-  -fs 900
+ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://example.htb/ -H 'Host: FUZZ.example.htb' -fs 900
 
 # Step 5 — add every discovered vhost to /etc/hosts before scanning
 sudo sh -c 'echo "TARGET_IP  admin.example.htb" >> /etc/hosts'
@@ -220,8 +199,7 @@ This final `all-subdomains.txt` and `ip-list.txt` are your inputs for Phase 2.
 ```bash
 # Step 1 — fast web port scan across your full scope list
 # Save as XML for EyeWitness / Aquatone
-sudo nmap -p 80,443,8000,8080,8180,8443,8888,8089,10000 \
-  --open -oA web_discovery -iL all-subdomains.txt
+sudo nmap -p 80,443,8000,8080,8180,8443,8888,8089,10000 --open -oA web_discovery -iL all-subdomains.txt
 
 # Step 2 — service + version detection on discovered hosts
 sudo nmap --open -sV -oA service_scan 10.10.10.10
@@ -337,12 +315,7 @@ eyewitness --web -x web_discovery.xml -d eyewitness_report/ --prepend-https
 # --no-prompt                       → skip "open report?" prompt
 # --add-http-ports 8000,8080,8888   → extra HTTP ports to check
 # --add-https-ports 8443            → extra HTTPS ports to check
-eyewitness --web -x web_discovery.xml -d eyewitness_report/ \
-  --timeout 10 \
-  --threads 5 \
-  --no-prompt \
-  --add-http-ports 8000,8080,8888 \
-  --add-https-ports 8443
+eyewitness --web -x web_discovery.xml -d eyewitness_report/ --timeout 10 --threads 5 --no-prompt --add-http-ports 8000,8080,8888 --add-https-ports 8443
 ```
 
 EyeWitness will:
