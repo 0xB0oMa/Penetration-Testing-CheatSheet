@@ -162,15 +162,10 @@ Most modern servers block this — but it's always worth attempting.
 curl -s "https://crt.sh/?q=example.com&output=json" | jq .
 
 # Extract unique subdomains from CT logs
-curl -s "https://crt.sh/?q=example.com&output=json" \
-  | jq . | grep name | cut -d":" -f2 \
-  | grep -v "CN=" | cut -d'"' -f2 \
-  | awk '{gsub(/\\n/,"\n");}1;' | sort -u | tee subdomainlist
+curl -s "https://crt.sh/?q=example.com&output=json" | jq . | grep name | cut -d":" -f2 | grep -v "CN=" | cut -d'"' -f2 | awk '{gsub(/\\n/,"\n");}1;' | sort -u | tee subdomainlist
 
 # Filter for a specific pattern (e.g. dev subdomains)
-curl -s "https://crt.sh/?q=example.com&output=json" \
-  | jq -r '.[] | select(.name_value | contains("dev")) | .name_value' \
-  | sort -u
+curl -s "https://crt.sh/?q=example.com&output=json" | jq -r '.[] | select(.name_value | contains("dev")) | .name_value' | sort -u
 ```
 
 | Tool | URL |
