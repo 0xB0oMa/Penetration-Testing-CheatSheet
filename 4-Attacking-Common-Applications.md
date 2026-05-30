@@ -1,7 +1,7 @@
 # Common Applications - Penetration Testing Cheat Sheet
 
 > Always have written authorization before testing.  
-> This cheat sheet covers web application attack techniques from reconnaissance through exploitation.  
+> This cheat sheet covers common web application attack techniques from reconnaissance through exploitation.  
 > Feed findings from `01-passive-recon` and `02-active-recon` into this phase.
 
 ---
