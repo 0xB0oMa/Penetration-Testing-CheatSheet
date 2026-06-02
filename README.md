@@ -27,10 +27,9 @@ This repository is designed as a quick reference for penetration testers, red te
 ├── Shells & Payloads
 ├── Linux Privilege Escalation
 ├── Windows Privilege Escalation
-├── Password Attacks & Credential Access
+├── Password Attacks & Lateral Movement
 ├── File Transfer Techniques
-├── Pivoting & Tunneling
-└── Lateral Movement
+└── Pivoting & Tunneling
 
 5-Active-Directory/
 ├── AD Enumeration
