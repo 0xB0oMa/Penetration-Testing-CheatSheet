@@ -38,21 +38,6 @@ This repository is designed as a quick reference for penetration testers, red te
 ├── Kerberos Attacks
 └── Privilege Escalation Techniques
 ```
-
----
-
-## Topics Covered
-
-### Reconnaissance
-
-### Enumeration & Vulnerability Assessment
-
-### Exploitation
-
-### Post-Exploitation
-
-### Active Directory
-
 ---
 
 ## Intended Audience
