@@ -70,6 +70,3 @@ This mirrors the workflow commonly used during penetration testing engagements.
 This repository is intended for educational purposes, lab environments, authorized security assessments, and defensive security research only.
 
 Always obtain proper authorization before testing any system or network.
-
-```
-```
