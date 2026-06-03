@@ -14,9 +14,9 @@ This repository is designed as a quick reference for penetration testers, red te
 └── Active Reconnaissance
 
 2-Enumeration-and-Vulnerability-Assessment/
-├── Network Service Enumeration
-├── Vulnerability Assessment
-└── Service-Specific Enumeration
+├── Network Enumeration
+├── Host Based Enumeration
+└── Vulnerability Assessment
 
 3-Exploitation/
 ├── Network Services Hacking
