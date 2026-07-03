@@ -24,6 +24,7 @@
 - [Breach / Credential Data](#breach--credential-data)
 - [Automated Passive Recon](#automated-passive-recon)
 - [DNS Record Types Reference](#dns-record-types-reference)
+- [Note Taking Structure](#note-taking-structure)
 
 ---
 
