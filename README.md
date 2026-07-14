@@ -26,35 +26,41 @@ This repository serves as a centralized reference for penetration testers, red t
 ## Repository Structure
 
 ```text
-1-Reconnaissance/
-├── Passive Reconnaissance
-└── Active Reconnaissance
-
-2-Enumeration-and-Vulnerability-Assessment/
-├── Network Enumeration
-├── Host-Based Enumeration
-└── Vulnerability Assessment
-
-3-Exploitation/
-├── Network Services
-├── Web Application Testing
-└── Common Application Attacks
-
-4-Post-Exploitation/
-├── Shells & Payloads
-├── Linux Privilege Escalation
-├── Windows Privilege Escalation
-├── Password Attacks & Lateral Movement
-├── File Transfer Techniques
-└── Pivoting & Tunneling
-
-5-AD-Enumeration&Attacks/
-├── AD Enumeration
-├── AD Attacks
-├── Kerberos Attacks
-└── Privilege Escalation Techniques
+.
+├── 1-Reconnaissance
+│   ├── Passive Reconnaissance
+│   ├── Active Reconnaissance
+│   └── README
+│
+├── 2-Enumeration-and-Vulnerability-Assessment
+│   ├── Network Enumeration
+│   ├── Host-Based Enumeration
+│   ├── Nessus Vulnerability Assessment
+│   ├── OpenVAS Vulnerability Assessment
+│   └── README
+│
+├── 3-Exploitation
+│   ├── Attacking Common Services
+│   ├── Web Pentesting
+│   ├── Attacking Common Applications
+│   └── README
+│
+├── 4-Post-Exploitation
+│   ├── Shells & Payloads
+│   ├── Linux Privilege Escalation
+│   ├── Windows Privilege Escalation
+│   ├── Password Attacks & Lateral Movement
+│   ├── File Transfer Techniques
+│   ├── Pivoting & Tunneling
+│   └── README
+│
+└── 5-AD-Enumeration&Attacks
+    ├── AD Enumeration
+    ├── AD Attacks
+    ├── Kerberos Attacks
+    ├── Privilege Escalation Techniques
+    └── README
 ```
-
 ---
 
 ## Learning Path
