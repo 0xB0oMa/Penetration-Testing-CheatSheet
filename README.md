@@ -1,8 +1,25 @@
 # Penetration Testing Cheat Sheet
 
-A practical penetration testing knowledge base covering reconnaissance, enumeration, exploitation, post-exploitation, and Active Directory attacks.
+A practical penetration testing knowledge base covering reconnaissance, enumeration, exploitation, post-exploitation, privilege escalation, and Active Directory attacks.
 
-This repository is designed as a quick reference for penetration testers, red teamers, students, and security enthusiasts who want organized notes, commands, methodologies, and attack techniques in a single location.
+This repository serves as a centralized reference for penetration testers, red team operators, students, and cybersecurity enthusiasts. It contains organized notes, methodologies, commands, tools, and attack techniques collected from hands-on labs, CTFs, training, and practical experience.
+
+> **🚧 Work in Progress**
+>
+> This project is actively maintained and continuously updated. Some sections are still under development and will be expanded as new content is added.
+
+---
+
+## Features
+
+- 📖 Organized penetration testing methodologies
+- 🔍 Reconnaissance and enumeration techniques
+- 💥 Exploitation notes and attack workflows
+- 🔐 Linux & Windows privilege escalation
+- 🌐 Web application testing references
+- 🎯 Active Directory enumeration and attacks
+- ⚡ Quick command references
+- 📚 Suitable for study, labs, and real-world engagements
 
 ---
 
@@ -15,13 +32,13 @@ This repository is designed as a quick reference for penetration testers, red te
 
 2-Enumeration-and-Vulnerability-Assessment/
 ├── Network Enumeration
-├── Host Based Enumeration
+├── Host-Based Enumeration
 └── Vulnerability Assessment
 
 3-Exploitation/
-├── Network Services Hacking
-├── Web Pentesting
-└── Attacking Common Applications
+├── Network Services
+├── Web Application Testing
+└── Common Application Attacks
 
 4-Post-Exploitation/
 ├── Shells & Payloads
@@ -31,28 +48,18 @@ This repository is designed as a quick reference for penetration testers, red te
 ├── File Transfer Techniques
 └── Pivoting & Tunneling
 
-5-Active-Directory/
+5-AD-Enumeration&Attacks/
 ├── AD Enumeration
 ├── AD Attacks
 ├── Kerberos Attacks
 └── Privilege Escalation Techniques
 ```
----
-
-## Intended Audience
-
-* Penetration Testers
-* Red Team Operators
-* Security Researchers
-* Students Preparing for Certifications
-* Bug Bounty Hunters
-* System Administrators Learning Offensive Security
 
 ---
 
 ## Learning Path
 
-For beginners, it is recommended to follow the content in the following order:
+If you're new to penetration testing, follow the content in this order:
 
 1. Reconnaissance
 2. Enumeration & Vulnerability Assessment
@@ -60,12 +67,71 @@ For beginners, it is recommended to follow the content in the following order:
 4. Post-Exploitation
 5. Active Directory
 
-This mirrors the workflow commonly used during penetration testing engagements.
+This progression mirrors the methodology commonly followed during professional penetration testing engagements.
+
+---
+
+## Intended Audience
+
+This repository is intended for:
+
+- Penetration Testers
+- Red Team Operators
+- Security Researchers
+- Students preparing for certifications (eJPT, PNPT, CPTS, OSCP, CRTO, etc.)
+- Bug Bounty Hunters
+- System Administrators learning offensive security
+- Anyone interested in ethical hacking
+
+---
+
+## Goals
+
+The primary goals of this repository are to:
+
+- Build a structured penetration testing knowledge base
+- Document useful commands and methodologies
+- Create a quick-reference guide for assessments
+- Share practical offensive security knowledge
+- Continuously improve through hands-on learning
+
+---
+
+## Current Progress
+
+| Section | Status |
+|---------|:------:|
+| Reconnaissance | ✅ Complete |
+| Enumeration | ✅ Complete |
+| Vulnerability Assessment | 🚧 In Progress |
+| Exploitation | ✅ Complete |
+| Post-Exploitation | ✅ Complete |
+| Active Directory Enumeration | 🚧 In Progress |
+| Active Directory Attacks | 🚧 In Progress |
+
+---
+
+## Contributions
+
+Suggestions, corrections, and improvements are always welcome.
+
+If you find outdated information, missing techniques, or errors, feel free to open an Issue or submit a Pull Request.
 
 ---
 
 ## Disclaimer
 
-This repository is intended for educational purposes, lab environments, authorized security assessments, and defensive security research only.
+This repository is intended for:
 
-Always obtain proper authorization before testing any system or network.
+- Educational purposes
+- Authorized penetration testing
+- Lab environments
+- Defensive security research
+
+Never use the information provided in this repository against systems or networks without explicit authorization.
+
+---
+
+## License
+
+This repository is released under the MIT License unless otherwise specified.
