@@ -137,7 +137,3 @@ This repository is intended for:
 Never use the information provided in this repository against systems or networks without explicit authorization.
 
 ---
-
-## License
-
-This repository is released under the MIT License unless otherwise specified.
